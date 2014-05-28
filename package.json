@@ -1,0 +1,29 @@
+{
+  "name": "hapi-dummy-api",
+  "description": "Generate dummy APIs for building clientside apps before the real API is done.",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "bugs": {
+    "url": "https://github.com/henrikjoreteg/hapi-dummy-api/issues"
+  },
+  "dependencies": {
+    "underscore": "~1.6.0"
+  },
+  "homepage": "https://github.com/henrikjoreteg/hapi-dummy-api",
+  "keywords": [
+    "hapi",
+    "plugin",
+    "api",
+    "fake",
+    "dummy"
+  ],
+  "license": "MIT",
+  "main": "hapi-dummy-api.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/henrikjoreteg/hapi-dummy-api"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
