@@ -1,6 +1,6 @@
 # hapi-dummy-api
 
-Generate dummy APIs for building clientside apps before the real API is done.
+Generate dummy APIs for hapi.js, for building clientside apps before the real API is done.
 
 Don't wait for the real thing to be done before you get started building the client app.
 

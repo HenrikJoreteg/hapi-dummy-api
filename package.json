@@ -1,6 +1,6 @@
 {
   "name": "hapi-dummy-api",
-  "description": "Generate dummy APIs for building clientside apps before the real API is done.",
+  "description": "Generate dummy APIs for hapi.js, for building clientside apps before the real API is done.",
   "version": "0.0.0",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "bugs": {
