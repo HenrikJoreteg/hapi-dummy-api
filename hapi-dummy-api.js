@@ -20,7 +20,13 @@ function API(spec) {
 }
 
 API.prototype.get = function (id) {
-    return _.findWhere(this.data, {id: id});
+    var searchObj = {};
+    searchObj[this.idProperty] = id;
+    var found = _.findWhere(this.data, searchObj);
+    if (found) return found;
+    // try it as a number
+    searchObj[this.idProperty] = Number(id);
+    return _.findWhere(this.data, searchObj)
 };
 
 API.prototype.register = function (plugin, options, next) {
