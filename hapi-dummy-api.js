@@ -20,7 +20,7 @@ function API(spec) {
 }
 
 API.prototype.get = function (id) {
-    return _.findWhere(this.data, {id: parseInt(id + '', 10)});
+    return _.findWhere(this.data, {id: id});
 };
 
 API.prototype.register = function (plugin, options, next) {
