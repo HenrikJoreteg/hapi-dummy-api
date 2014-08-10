@@ -17,27 +17,20 @@ npm install hapi-dummy-api
 
 ```javascript
 var Hapi = require('hapi');
-var config = require('getconfig');
-var server = new Hapi.Server('localhost', config.http.port);
-
-// require our dummy API generator
-var API = require('hapi-dummy-api');
-
+var server = new Hapi.Server('localhost', 3000);
+var dummyAPI = require('hapi-dummy-api');
 
 // all these config items are optionals
-var tempAPI = new API({
+var peopleOptions = {
     // Optionally give it some starting data (should be an array)
     // defaults to [];
-    data: [
-        {
-            id: 0,
-            name: 'mary'
-        },
-        {
-            id: 1,
-            name: 'bob'
-        }
-    ],
+    data: [{
+        id: 0,
+        name: 'mary'
+    }, {
+        id: 1,
+        name: 'bob'
+    }],
     // the root RESTful resource URL
     rootUrl: '/api/people',
     // specify which property name should be the "id"
@@ -45,27 +38,40 @@ var tempAPI = new API({
     idProperty: 'id',
     // Optionally give it a delay (in milliseconds) to simulate network latency
     // as you'd have in real clientapp situation.
-    delay: 200,
-    // hapi plugin name, defaults to 'api'
-    name: 'fake-people-api',
-    // hapi plugin version, defaults to '0.0.0',
-    version: '0.0.1'
-});
+    delay: 200
+};
 
+// here is a second resource
+var thingsOptions = {
+    data: [{
+        id: 0,
+        name: 'chair'
+    }],
+    rootUrl: '/api/things'
+};
 
-server.pack.register(fakeApi, function (err) {
-    if (err) throw err;
-    // If everything loaded correctly, start the server:
-    server.start(function (err) {
+server.pack.register(
+    // register the plugin twice with both of our configs
+    [{
+        plugin: dummyAPI,
+        options: peopleOptions
+    }, {
+        plugin: dummyAPI,
+        options: thingsOptions
+    }],
+    function (err) {
         if (err) throw err;
-        console.log("running at: http://localhost:" + config.http.port + ");
-    });
-});
+        server.start(function (err) {
+            if (err) throw err;
+            console.log("running at: http://localhost:" + 3000);
+        });
+    }
+);
 ```
 
 ## additional info
 
-There's really not much more to it, the source is < 100 lines and should be quite readable. 
+There's really not much more to it, the source is < 100 lines and should be quite readable.
 
 This is meant for development only, obviously. It would be the worlds most terrible and insecure production API. Please don't use it for that. Use it to aid development of client apps.
 
