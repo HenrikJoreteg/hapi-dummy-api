@@ -53,12 +53,12 @@ var tempAPI = new API({
 });
 
 
-server.pack.register(fakeApi, function (err) {
+server.pack.register(tempAPI, function (err) {
     if (err) throw err;
     // If everything loaded correctly, start the server:
     server.start(function (err) {
         if (err) throw err;
-        console.log("running at: http://localhost:" + config.http.port + ");
+        console.log("running at: http://localhost:" + config.http.port);
     });
 });
 ```
