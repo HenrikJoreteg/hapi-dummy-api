@@ -78,7 +78,9 @@ This is meant for development only, obviously. It would be the worlds most terri
 
 ## credits
 
-If you like this follow [@HenrikJoreteg](http://twitter.com/henrikjoreteg) on twitter.
+Created by [@HenrikJoreteg](http://twitter.com/henrikjoreteg).
+
+Big thanks to @Flet for his work on keeping it up to date and adding tests.
 
 ## license
 

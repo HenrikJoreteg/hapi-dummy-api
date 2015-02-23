@@ -27,7 +27,7 @@
     "test": "./node_modules/lab/bin/lab -c -v"
   },
   "devDependencies": {
-    "hapi": "^6.4.0",
+    "hapi": "^8.0.0",
     "lab": "^4.0.1"
   }
 }

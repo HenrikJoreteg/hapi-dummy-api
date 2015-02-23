@@ -8,6 +8,8 @@ var pseudoAPI = require('../');
 lab.experiment('hapi-dummy-api', function () {
     var server = new Hapi.Server();
 
+    server.connection({ port: 80, labels: 'a' });
+
     var opts = {
         data: [{
             id: 0,
@@ -23,8 +25,8 @@ lab.experiment('hapi-dummy-api', function () {
 
     lab.test('Plugin successfully loads', function (done) {
 
-        server.pack.register({
-            plugin: pseudoAPI,
+        server.register({
+            register: pseudoAPI,
             options: opts
         }, function (err) {
             Lab.expect(err).to.equal(undefined);
@@ -33,7 +35,8 @@ lab.experiment('hapi-dummy-api', function () {
     });
 
     lab.test('Plugin registers routes', function (done) {
-        var table = server.table();
+        var table = server.table()[0].table;
+
         Lab.expect(table).to.have.length(5);
 
         Lab.expect(table[0].path).to.equal(root);
@@ -208,6 +211,4 @@ lab.experiment('hapi-dummy-api', function () {
             done();
         });
     });
-
-
 });
