@@ -17,8 +17,12 @@ npm install hapi-dummy-api
 
 ```javascript
 var Hapi = require('hapi');
-var server = new Hapi.Server('localhost', 3000);
+var server = new Hapi.Server();
 var dummyAPI = require('hapi-dummy-api');
+
+server.connection({
+  port: 3000
+});
 
 // all these config items are optionals
 var peopleOptions = {
@@ -50,20 +54,20 @@ var thingsOptions = {
     rootUrl: '/api/things'
 };
 
-server.pack.register(
+server.register(
     // register the plugin twice with both of our configs
     [{
-        plugin: dummyAPI,
+        register: dummyAPI,
         options: peopleOptions
     }, {
-        plugin: dummyAPI,
+        register: dummyAPI,
         options: thingsOptions
     }],
     function (err) {
         if (err) throw err;
         server.start(function (err) {
             if (err) throw err;
-            console.log("running at: http://localhost:" + 3000);
+            console.log("running at: ", server.info.uri);
         });
     }
 );
@@ -75,6 +79,21 @@ There's really not much more to it, the source is < 100 lines and should be quit
 
 This is meant for development only, obviously. It would be the worlds most terrible and insecure production API. Please don't use it for that. Use it to aid development of client apps.
 
+### CORS
+
+Example CORS configuration for all routes by default:
+
+```
+server.connection({
+  port: 3000,
+  routes: {
+    cors: {
+      additionalHeaders: ['X-Auth-Token']
+    },
+    jsonp: 'callback'
+  }
+});
+```
 
 ## credits
 
